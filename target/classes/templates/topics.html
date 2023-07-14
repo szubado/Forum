@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Topics</title>
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="/topic.css">
+</head>
+<body>
+<div th:replace="~{fragments.html :: logo}"></div>
+<div  th:replace="~{fragments.html :: menu}"></div>
+<div id="content">
+    <form method="get">
+        <input type="text" name="pattern" placeholder="Wpisz szukaną frazę">
+        <input type="submit" value="Szukaj" class="search">
+    </form>
+    <div th:each="topic : ${topics}" class="topic">
+        <div th:text="${topic.title}" class="title"></div>
+        <div th:text="'Autor: ' + ${topic.author}" class="author"></div>
+        <div class="date">&#128348 </div>
+<!--        <div th:text="'Ilość postów: ' + ${topic.quantity}" class="quantity"></div>-->
+        <a th:href="@{/topic/read/{id}(id=${topic.id})}" class="edit">Przeglądaj temat</a>
+        <a th:if="${admin}" th:href="@{/topic/delete/{id}(id=${topic.id})}" class="edit">Usuń temat</a>
+    </div>
+</div>
+</body>
+</html>

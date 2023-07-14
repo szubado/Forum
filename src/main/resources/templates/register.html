@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Forum</title>
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/login.css">
+  <script src="/register-validator.js"></script>
+</head>
+<body>
+<div th:replace="~{fragments.html :: logo}"></div>
+<div  th:replace="~{fragments.html :: menu}"></div>
+<div id="content">
+  <form method="post" onsubmit="return validate()">
+    <div id="info"></div>
+    <input type="text" class="input" placeholder="Imię" id="name" th:field="*{userModel.name}">
+    <input type="text" class="input" placeholder="Nazwisko" id="surname" th:field="*{userModel.surname}">
+    <input type="text" class="input" placeholder="E-mail" id="email" th:field="*{userModel.email}">
+    <input type="text" class="input" placeholder="Login" id="login" th:field="*{userModel.login}">
+    <input type="password" class="input" placeholder="Hasło" id="password" th:field="*{userModel.password}">
+    <input type="password" name="password2" class="input" id="password2" placeholder="Powtórz hasło">
+    <input type="submit" value="Zarejestruj" class="submit">
+  </form>
+</div>
+</body>
+</html>

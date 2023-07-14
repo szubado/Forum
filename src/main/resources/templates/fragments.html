@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="logo" th:fragment="logo">
+  <img src ="/logo.png">
+</div>
+
+<div id="menu" th:fragment="menu">
+    <div class="menuTitle">&#129429 MENU &#129429</div>
+  <a href="/main">Strona główna</a>
+  <a href="/topics">Tematy</a>
+  <a th:if="${!logged}" href="/login">Logowanie</a>
+    <a th:if="${logged}" href="/logout">Wyloguj</a>
+    <a th:if="${logged}" href="/topic/add" class="add">Dodaj temat</a>
+<!--    <a th:each="topic : ${topicById}">
+        <a th:if="${logged}" th:href="@{/topic/read/{id}(id=${topic.id})}" class="add">Dodaj post</a>
+    </a>-->
+</div>
+
+</body>
+</html>

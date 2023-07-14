@@ -1,0 +1,56 @@
+.topic {
+    border: 5px solid #20a194;
+    text-align: left;
+    margin: 10px;
+    background-color: #24DBC9;
+    transition: all 0.5s;
+}
+
+.topic:hover {
+    border: 5px solid #ffbe0f;
+    background-color: #ffd000
+}
+
+.topic .title {
+    font-size: 28px;
+    margin: 5px;
+}
+
+
+.topic .author, .topic .date, .topic .quantity, .topic .edit{
+    display: inline-block;
+    font-size: 16px;
+}
+.topic .edit {
+    display: inline-block;
+    border-radius: 5px;
+
+    font-size: 16px;
+    text-decoration: none;
+    border: 1px solid #944dff;
+    background-color: #b380ff;
+    color: black;
+}
+
+.topic .edit:hover {
+border: 2px solid #5200cc;
+color: black;
+background-color: #6600ff;
+}
+
+.search {
+font-size: 15px;
+margin:5px 25px;
+text-decoration: none;
+border: 2px solid #56e42f;
+padding: 5px 10px;
+color: black;
+transition: all 0.5s;
+background-color: #97ff7a
+}
+
+.search:hover {
+border: 2px solid #3dd18c;
+color: black;
+background-color: #6edeaa;
+}

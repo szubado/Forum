@@ -1,0 +1,13 @@
+.mainTopic {
+    border: 5px solid #00ff99;
+    text-align: center;
+    margin: 30px;
+    background-color: #66ffc2;
+    transition: all 0.5s;
+    font-size: 38px;
+    margin: 5px;
+}
+.mainTopic:hover {
+    border: 5px solid #00e64d;
+    background-color: #66ff66;
+    }

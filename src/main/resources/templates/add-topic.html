@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Forum</title>
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/login.css">
+  <script src="/topic-validator.js"></script>
+</head>
+<body>
+<div th:replace="~{fragments.html :: logo}"></div>
+<div  th:replace="~{fragments.html :: menu}"></div>
+<div id="content">
+  <form method="post" onsubmit="return validate()">
+    <div id="info"></div>
+    <input type="text" class="input" placeholder="Tytuł tematu" id="title" th:field="*{topicModel.title}">
+    <input type="text" class="input" placeholder="Pierwszy post" id="text" th:field="*{postModel.text}">
+    <input type="submit" value="Dodaj temat" class="submit">
+  </form>
+</div>
+</body>
+</html>
