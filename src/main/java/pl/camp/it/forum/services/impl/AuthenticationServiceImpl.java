@@ -10,6 +10,8 @@ import pl.camp.it.forum.model.User;
 import pl.camp.it.forum.services.IAuthenticationService;
 import pl.camp.it.forum.session.SessionData;
 
+import java.util.Optional;
+
 @Service
 public class AuthenticationServiceImpl implements IAuthenticationService {
     @Autowired
@@ -18,10 +20,10 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     SessionData sessionData;
     @Override
     public void authenticate(String login, String password) {
-        User user = this.userRepository.getByLogin(login);
-        if(user != null && user.getPassword().equals(DigestUtils.md5Hex(password))) {
-            user.setPassword(null);
-            this.sessionData.setUser(user);
+        Optional<User> userBox = this.userRepository.getByLogin(login);
+        if(userBox.isPresent() && userBox.get().getPassword().equals(DigestUtils.md5Hex(password))) {
+            userBox.get().setPassword(null);
+            this.sessionData.setUser(userBox.get());
         }
     }
 
@@ -33,7 +35,7 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
 
     @Override
     public void register(User user) throws LoginAlreadyExists {
-        if (this.userRepository.getByLogin(user.getLogin()) != null) {
+        if (this.userRepository.getByLogin(user.getLogin()).isPresent()) {
             throw new LoginAlreadyExists();
         }
         user.setPassword(DigestUtils.md5Hex((user.getPassword())));

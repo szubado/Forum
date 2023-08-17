@@ -27,6 +27,7 @@
     <div th:text="${post.text}" class="post"></div>
     <div th:text="'Autor: ' + ${post.author}" class="author"></div>
     <div class="date">&#128348 </div>
+    <div th:text="${post.getPrettyTime}" class="date"></div>
   </div>
 </div>
 </body>

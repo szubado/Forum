@@ -18,16 +18,20 @@ public class TopicServiceImpl implements ITopicService {
     }
 
     @Override
-    public List<Topic> getFilteredTopics(String pattern) {
-        List<Topic> topics = getAllTopics();
-        List<Topic> filtered = new ArrayList<>();
+    public List<Topic> getFilteredTopics(final String pattern) {
+       List<Topic> topics = getAllTopics();
+       return topics.stream()
+               .filter(t -> t.getTitle().toLowerCase().contains(pattern.toLowerCase())
+                       || t.getAuthor().toLowerCase().contains(pattern.toLowerCase()))
+               .toList();
+       /* List<Topic> filtered = new ArrayList<>();
         for (Topic topic : topics) {
             if (topic.getTitle().toLowerCase().contains(pattern.toLowerCase()) ||
                     topic.getAuthor().toLowerCase().contains(pattern.toLowerCase())) {
                 filtered.add(topic);
             }
         }
-        return filtered;
+        return filtered;*/
     }
 
     @Override
@@ -40,14 +44,15 @@ public class TopicServiceImpl implements ITopicService {
         this.topicDAO.deleteTopic(id);
     }
     @Override
-    public List<Topic> getTopicByTopicId(int topicId) {
+    public List<Topic> getTopicByTopicId(final int topicId) {
         List<Topic> topics = getAllTopics();
-        List<Topic> topicByTopicId = new ArrayList<>();
+        return topics.stream().filter(t -> t.getId() == topicId).toList();
+        /*List<Topic> topicByTopicId = new ArrayList<>();
         for (Topic topic : topics) {
             if (topic.getId() == topicId) {
                 topicByTopicId.add(topic);
             }
         }
-        return topicByTopicId;
+        return topicByTopicId;*/
     }
 }

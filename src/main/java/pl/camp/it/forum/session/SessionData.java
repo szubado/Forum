@@ -17,7 +17,6 @@ public class SessionData {
     private User user = null;
 
     public boolean isLogged() {
-
         return this.user != null;
     }
     public boolean isAdmin() {

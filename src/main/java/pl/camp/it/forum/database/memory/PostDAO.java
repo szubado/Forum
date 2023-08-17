@@ -10,6 +10,7 @@ import pl.camp.it.forum.model.Post;
 import pl.camp.it.forum.model.Topic;
 import pl.camp.it.forum.session.SessionData;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +21,14 @@ public class PostDAO implements IPostDAO {
     SessionData sessionData;
     IPostSequence postSequence;
     public PostDAO(@Autowired IPostSequence postSequence) {
-        posts.add(new Post(postSequence.getId(), "tekst", "Jan", 4));
-        posts.add(new Post(postSequence.getId(), "tekst", "Ben",4));
-        posts.add(new Post(postSequence.getId(), "tekst", "Ania",3));
-        posts.add(new Post(postSequence.getId(), "tekst", "Buła",4));
-        posts.add(new Post(postSequence.getId(), "tekst", "Ed",1));
-        posts.add(new Post(postSequence.getId(), "tekst", "Maja",1));
-        posts.add(new Post(postSequence.getId(), "tekst", "Wąs",1));
-        posts.add(new Post(postSequence.getId(), "tekst", "Kuc",1));
+        posts.add(new Post(postSequence.getId(), "tekst", "Jan", 4, LocalDateTime.now()));
+        posts.add(new Post(postSequence.getId(), "tekst", "Ben",4,LocalDateTime.now()));
+        posts.add(new Post(postSequence.getId(), "tekst", "Ania",3, LocalDateTime.now()));
+        posts.add(new Post(postSequence.getId(), "tekst", "Buła",4, LocalDateTime.now()));
+        posts.add(new Post(postSequence.getId(), "tekst", "Ed",1, LocalDateTime.now()));
+        posts.add(new Post(postSequence.getId(), "tekst", "Maja",1, LocalDateTime.now()));
+        posts.add(new Post(postSequence.getId(), "tekst", "Wąs",1, LocalDateTime.now()));
+        posts.add(new Post(postSequence.getId(), "tekst", "Kuc",1, LocalDateTime.now()));
         this.postSequence = postSequence;
     }
 
@@ -36,6 +37,7 @@ public class PostDAO implements IPostDAO {
         post.setId(this.postSequence.getId());
         post.setAuthor(sessionData.createAuthor());
         post.setTopicId(id);
+        post.setDateTime(LocalDateTime.now());
         this.posts.add(post);
     }
 

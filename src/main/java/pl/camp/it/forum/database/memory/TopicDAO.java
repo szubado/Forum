@@ -8,9 +8,12 @@ import pl.camp.it.forum.model.Post;
 import pl.camp.it.forum.model.Topic;
 import pl.camp.it.forum.services.IPostService;
 import pl.camp.it.forum.session.SessionData;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class TopicDAO implements ITopicDAO {
@@ -23,10 +26,10 @@ public class TopicDAO implements ITopicDAO {
 
 
     public TopicDAO(@Autowired ITopicIdSequence topicIdSequence) {
-        topics.add(new Topic(topicIdSequence.getId(),"Uprawa pomidorów","Janusz Rolnik", 3));
-        topics.add(new Topic(topicIdSequence.getId(),"Jak szczotkować krowy","Mariusz Mleczarz", 0));
-        topics.add(new Topic(topicIdSequence.getId(),"Jak wyjąć drzazgę z palca","Dorotka123", 1));
-        topics.add(new Topic(topicIdSequence.getId(),"Jak wybrać naczepę do ciągnika","Pan Rolnik", 4));
+        topics.add(new Topic(topicIdSequence.getId(),"Uprawa pomidorów","Janusz Rolnik", 3, LocalDateTime.now()));
+        topics.add(new Topic(topicIdSequence.getId(),"Jak szczotkować krowy","Mariusz Mleczarz", 0,LocalDateTime.now()));
+        topics.add(new Topic(topicIdSequence.getId(),"Jak wyjąć drzazgę z palca","Dorotka123", 1,LocalDateTime.now()));
+        topics.add(new Topic(topicIdSequence.getId(),"Jak wybrać naczepę do ciągnika","Pan Rolnik", 4,LocalDateTime.now()));
         this.topicIdSequence = topicIdSequence;
     }
 
@@ -40,6 +43,7 @@ public class TopicDAO implements ITopicDAO {
     public void persistTopic(Topic topic) {
         topic.setId(this.topicIdSequence.getId());
         topic.setAuthor(sessionData.createAuthor());
+        topic.setDateTime(LocalDateTime.now());
 /*
         topic.setQuantity(postService.getPostbyTopicId(topic.getId()).size());
 */
@@ -47,23 +51,26 @@ public class TopicDAO implements ITopicDAO {
     }
 
     @Override
-    public Topic getTopicById(int id) {
-        for (Topic topic : this.topics) {
+    public Optional<Topic> getTopicById(final int id) {
+        return this.topics.stream().filter(t -> t.getId() == id).findFirst();
+/*        for (Topic topic : this.topics) {
             if (topic.getId() == id) {
-                return topic;
+                return Optional.of(topic);
             }
         }
-        return null;
+        return Optional.empty();*/
     }
 
     @Override
-    public void deleteTopic(int id) {
-        Iterator<Topic> iterator = this.topics.iterator();
+    public void deleteTopic(final int id) {
+        Optional<Topic> topicBox = this.topics.stream().filter(t -> t.getId() == id).findFirst();
+        topicBox.ifPresent(this.topics::remove);
+        /*Iterator<Topic> iterator = this.topics.iterator();
         while (iterator.hasNext()) {
             if(iterator.next().getId() == id) {
                 iterator.remove();
                 return;
             }
-        }
+        }*/
     }
 }

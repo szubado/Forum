@@ -15,15 +15,16 @@ public class PostServiceImpl implements IPostService {
     IPostDAO postDAO;
 
     @Override
-    public List<Post> getPostbyTopicId(int topicId) {
+    public List<Post> getPostbyTopicId(final int topicId) {
         List<Post> posts = getAllPosts();
-        List<Post> postByTopicId = new ArrayList<>();
+        return posts.stream().filter(p -> p.getTopicId() == topicId).toList();
+        /*List<Post> postByTopicId = new ArrayList<>();
         for (Post post : posts) {
             if (post.getTopicId() == topicId) {
                 postByTopicId.add(post);
             }
         }
-        return postByTopicId;
+        return postByTopicId;*/
     }
 
     @Override

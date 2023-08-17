@@ -18,6 +18,7 @@
         <div th:text="${topic.title}" class="title"></div>
         <div th:text="'Autor: ' + ${topic.author}" class="author"></div>
         <div class="date">&#128348 </div>
+        <div th:text="${topic.getPrettyTime}" class="date"></div>
 <!--        <div th:text="'Ilość postów: ' + ${topic.quantity}" class="quantity"></div>-->
         <a th:href="@{/topic/read/{id}(id=${topic.id})}" class="edit">Przeglądaj temat</a>
         <a th:if="${admin}" th:href="@{/topic/delete/{id}(id=${topic.id})}" class="edit">Usuń temat</a>

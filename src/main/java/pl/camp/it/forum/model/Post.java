@@ -2,6 +2,9 @@ package pl.camp.it.forum.model;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,4 +20,9 @@ public class Post {
     private String text;
     private String author;
     private int topicId;
+    private LocalDateTime dateTime;
+    public String getPrettyTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return this.dateTime.format(formatter);
+    }
 }
