@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Repository
-public class UserDAO implements IUserRepository {
+
+/*public class UserDAO implements IUserRepository {
     private final List<User> users = new ArrayList<>();
     IUserIdSequence userIdSequence;
     public UserDAO(@Autowired IUserIdSequence userIdSequence) {
@@ -26,12 +26,12 @@ public class UserDAO implements IUserRepository {
     @Override
     public Optional<User> getByLogin(final String login) {
         return this.users.stream().filter(u -> u.getLogin().equals(login)).findFirst().map(User::copyOfUser);
-/*        for (User user : this.users) {
+*//*        for (User user : this.users) {
             if(user.getLogin().equals(login)) {
                 return Optional.of(User.copyOfUser(user));
             }
         }
-        return Optional.empty();*/
+        return Optional.empty();*//*
     }
 
     @Override
@@ -39,4 +39,4 @@ public class UserDAO implements IUserRepository {
         user.setId(this.userIdSequence.getId());
         this.users.add(user);
     }
-}
+}*/

@@ -29,4 +29,7 @@ public class SessionData {
     public String createAuthor() {
         return this.user.getLogin();
     }
+    public int getSessionUserId() {
+        return this.user.getId();
+    }
 }

@@ -6,5 +6,7 @@ import java.util.Optional;
 
 public interface IUserRepository {
     Optional<User> getByLogin(String login);
+    Optional<User> getById(int id);
     void persistUser(User user);
+
 }

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface IPostService {
     public List<Post> getPostbyTopicId(int topicId);
-    List<Post> getAllPosts();
+    /*List<Post> getAllPosts();*/
     public void persistPost(Post post, int id);
 }

@@ -12,14 +12,16 @@ import java.time.format.DateTimeFormatter;
 @ToString
 @EqualsAndHashCode
 public class Post {
-    public Post(int topicId) {
+/*    public Post(int topicId) {
         this.topicId = topicId;
-    }
+    }*/
 
     private int id;
     private String text;
-    private String author;
-    private int topicId;
+    private User user;
+/*
+    private Topic topic;
+*/
     private LocalDateTime dateTime;
     public String getPrettyTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");

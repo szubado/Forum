@@ -1,14 +1,19 @@
 package pl.camp.it.forum.services.impl;
 
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.camp.it.forum.database.ITopicDAO;
 import pl.camp.it.forum.model.Topic;
 import pl.camp.it.forum.services.ITopicService;
+import pl.camp.it.forum.session.SessionData;
+
 import java.util.ArrayList;
 import java.util.List;
 @Service
 public class TopicServiceImpl implements ITopicService {
+    @Resource
+    SessionData sessionData;
 
     @Autowired
     private ITopicDAO topicDAO;
@@ -22,7 +27,7 @@ public class TopicServiceImpl implements ITopicService {
        List<Topic> topics = getAllTopics();
        return topics.stream()
                .filter(t -> t.getTitle().toLowerCase().contains(pattern.toLowerCase())
-                       || t.getAuthor().toLowerCase().contains(pattern.toLowerCase()))
+                       || t.getUser().getLogin().toLowerCase().contains(pattern.toLowerCase()))
                .toList();
        /* List<Topic> filtered = new ArrayList<>();
         for (Topic topic : topics) {
@@ -36,6 +41,7 @@ public class TopicServiceImpl implements ITopicService {
 
     @Override
     public void persistTopic(Topic topic) {
+        topic.setUser(sessionData.getUser());
         this.topicDAO.persistTopic(topic);
     }
 

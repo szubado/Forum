@@ -14,13 +14,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class PostDAO implements IPostDAO {
+
+/*public class PostDAO implements IPostDAO {
     private final List<Post> posts = new ArrayList<>();
     @Resource
     SessionData sessionData;
     IPostSequence postSequence;
-    public PostDAO(@Autowired IPostSequence postSequence) {
+    *//*public PostDAO(@Autowired IPostSequence postSequence) {
         posts.add(new Post(postSequence.getId(), "tekst", "Jan", 4, LocalDateTime.now()));
         posts.add(new Post(postSequence.getId(), "tekst", "Ben",4,LocalDateTime.now()));
         posts.add(new Post(postSequence.getId(), "tekst", "Ania",3, LocalDateTime.now()));
@@ -30,19 +30,19 @@ public class PostDAO implements IPostDAO {
         posts.add(new Post(postSequence.getId(), "tekst", "Wąs",1, LocalDateTime.now()));
         posts.add(new Post(postSequence.getId(), "tekst", "Kuc",1, LocalDateTime.now()));
         this.postSequence = postSequence;
-    }
+    }*//*
 
-    @Override
+    *//*@Override
     public void persistTopic(Post post, int id) {
         post.setId(this.postSequence.getId());
         post.setAuthor(sessionData.createAuthor());
         post.setTopicId(id);
         post.setDateTime(LocalDateTime.now());
         this.posts.add(post);
-    }
+    }*//*
 
     @Override
     public List<Post> getAllPosts() {
         return new ArrayList<>(this.posts);
     }
-}
+}*/
